@@ -77,14 +77,14 @@ class TestDiff < Test::Unit::TestCase
   end
   
   def test_diff_hashkey
-    assert_equal('5d46068', @diff["scott/newfile"].src)
+    assert_equal('5d4606820736043f9eed', @diff["scott/newfile"].src)
     assert_nil(@diff["scott/newfile"].blob(:dst))
     assert(@diff["scott/newfile"].blob(:src).is_a?(Git::Object::Blob))
   end
   
   def test_patch
     p = @git.diff('v2.8^', 'v2.8').patch
-    diff = "diff --git a/example.txt b/example.txt\nindex 1f09f2e..8dc79ae 100644\n--- a/example.txt\n+++ b/example.txt\n@@ -1 +1 @@\n-replace with new text\n+replace with new text - diff test"
+    diff = "diff --git a/example.txt b/example.txt\nindex 1f09f2edb9c0d9275d15..8dc79ae7616abf1e2d4d 100644\n--- a/example.txt\n+++ b/example.txt\n@@ -1 +1 @@\n-replace with new text\n+replace with new text - diff test"
     assert_equal(diff, p)
   end
   
@@ -97,7 +97,7 @@ class TestDiff < Test::Unit::TestCase
     assert(files['example.txt'])
     assert_equal('100644', files['scott/newfile'].mode)
     assert_equal('deleted', files['scott/newfile'].type)
-    assert_equal(160, files['scott/newfile'].patch.size)
+    assert_equal(186, files['scott/newfile'].patch.size)
   end
   
   

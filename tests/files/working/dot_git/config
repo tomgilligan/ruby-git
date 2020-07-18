@@ -8,6 +8,7 @@
 	filemode = true
 	bare = false
 	logallrefupdates = true
+	abbrev = 20
 [gui]
 	geometry = 986x682+365+124 211 500
 [remote "working"]
